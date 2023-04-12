@@ -13,7 +13,10 @@ public class GestionJeu : MonoBehaviour
 
     private int _pointage = 0;  // Attribut qui conserve le nombre d'accrochages
     private float _tempsFinal = 0;
-    private float _tempsDepart = 0;
+    private Player _player;
+
+
+    //-------  private float _tempsDepart = 0;
 
 
 
@@ -45,7 +48,8 @@ public class GestionJeu : MonoBehaviour
 
     private void Start()
     {
-        _tempsDepart = Time.time;
+        _player = FindObjectOfType<Player>();
+        // --- _tempsDepart = Time.time;
     }
 
     private void Update()
@@ -77,12 +81,12 @@ public class GestionJeu : MonoBehaviour
 
     public float GetTempsDepart()
     {
-        return _tempsDepart;
+        return  _player.GetTempsDepart();
     }
 
     public void SetTempsFinal(float p_tempFinal)
     {
-        _tempsFinal = p_tempFinal - _tempsDepart;
+        _tempsFinal = p_tempFinal - GetTempsDepart();
     }
 
     public float GetTempsFinal()

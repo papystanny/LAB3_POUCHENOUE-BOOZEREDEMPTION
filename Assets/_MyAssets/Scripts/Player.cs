@@ -10,12 +10,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _vitesse = 7.5f;  
 
-    [SerializeField] private float _vitesseRotation = 180f;  
+    [SerializeField] private float _vitesseRotation = 180f;
+
+    private float _tempsDepart = 0;
 
 
 
 
-    
+
     void Start()
     {
         transform.position = new Vector3(225.24f, 255.05f, 383.59f);  // place le joueur � sa position initiale 
@@ -37,6 +39,12 @@ public class Player : MonoBehaviour
         float positionX = Input.GetAxis("Horizontal"); // R�cup�re la valeur de l'axe horizontal de l'input manager
         float positionZ = Input.GetAxis("Vertical");  // R�cup�re la valeur de l'axe vertical de l'input manager
         Vector3 direction = new Vector3(positionX, 0f, positionZ);  // �tabli la direction du vecteur � appliquer sur le joueur
+
+        if(positionX != 0f || positionZ !=0f)
+        {
+            _tempsDepart = Time.time;
+        }
+
         direction.Normalize();
         transform.Translate(direction * _vitesse * Time.deltaTime, Space.World);
 
@@ -51,6 +59,11 @@ public class Player : MonoBehaviour
     public void finPartieJoueur()
     {
         Destroy(gameObject);// Disparition du joueur 
+    }
+
+    public float GetTempsDepart()
+    {
+        return _tempsDepart;
     }
 
 

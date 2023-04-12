@@ -23,14 +23,15 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-      //  float temps = Time.time - _gestionJeu.GetTempsDepart();
-      //  _txtTemps.text = "Temps : " + temps.ToString("f2");
+
+        float temps = _gestionJeu.GetTempsDepart();
+       _txtTemps.text = "Temps : " + temps.ToString("f2");
         GestionPause();
     }
 
     private void GestionPause()
     {
-        _txtTemps.text = "Temps : " + Time.time.ToString("f2");
+        
         if (Input.GetKeyDown(KeyCode.Escape) && !_enPause)
         {
             _menuPause.SetActive(true);
